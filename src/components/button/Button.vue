@@ -1,4 +1,7 @@
 <script setup lang="ts">
+interface ButtonProps {
+  color: 'primary' | 'secondary'
+}
 interface ButtonEmits {
   (event: 'click', value: MouseEvent): void
 }
@@ -10,6 +13,7 @@ interface ButtonSlots {
 defineOptions({
   name: 'UiButton'
 })
+defineProps<ButtonProps>()
 defineSlots<ButtonSlots>()
 defineEmits<ButtonEmits>()
 </script>
@@ -19,5 +23,3 @@ defineEmits<ButtonEmits>()
     <slot />
   </button>
 </template>
-
-<style lang="postcss" src="./button.css" />

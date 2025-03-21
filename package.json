@@ -4,9 +4,6 @@
   "license": "MIT",
   "author": "Upstars Global",
   "type": "module",
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/upstars-global/front-ui.git"
@@ -15,18 +12,32 @@
     "url": "https://github.com/upstars-global/front-ui/issues"
   },
   "homepage": "https://github.com/upstars-global/front-ui#readme",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js"
-    }
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./components/*": "./dist/components/*",
+    "./config": "./scripts/config/index.js"
   },
   "files": [
-    "dist"
+    "dist/**/*",
+    "README.md",
+    "*.js",
+    "*.d.ts",
+    "!public/**/*",
+    "!script/**/*",
+    "!src/**/*"
   ],
   "scripts": {
     "dev:storybook": "storybook dev -p 6006",
-    "build:lib": "vite build -c vite.lib.ts",
+    "build:package": "vite build -c vite.lib.ts",
+    "build:types": "vue-tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "build:lib": "yarn build:package && yarn build:types",
     "build:storybook": "storybook build",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier . --check",
@@ -34,7 +45,8 @@
     "lintfix": "eslint . --fix && prettier --write --list-different ."
   },
   "dependencies": {
-    "vue": "^3.5.13"
+    "tailwindcss": "~3.4.17",
+    "vue": "~3.5.12"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.5",
@@ -62,19 +74,16 @@
     "postcss-nested": "^7.0.2",
     "prettier": "^3.5.3",
     "storybook": "^8.6.4",
+    "tsc-alias": "^1.8.11",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
     "vite": "^6.2.0",
-    "vite-plugin-dts": "^4.5.3",
-    "vite-plugin-lib-inject-css": "^2.2.1",
     "vitest": "^3.0.8",
     "vue-eslint-parser": "^10.1.1",
     "vue-tsc": "^2.2.4"
   },
   "peerDependencies": {
-    "vue": "^3.5.13"
-  },
-  "sideEffects": [
-    "**/*.css"
-  ]
+    "tailwindcss": "^3.4.x",
+    "vue": "^3.5.x"
+  }
 }

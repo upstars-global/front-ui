@@ -1,0 +1,14 @@
+public/
+scripts/
+src/
+.storybook/
+.prettierignore
+.prettierrc
+eslint.config.js
+yarn-error.log
+postcss.config.js
+tsconfig.build.json
+tsconfig.json
+vite.config.ts
+vite.lib.ts
+vitest.config.ts

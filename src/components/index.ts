@@ -1,4 +1,4 @@
-import Button from './button/Button.vue'
-import Image from './image/Image.vue'
+import UiButton from './button/Button.vue'
+import UiImage from './image/Image.vue'
 
-export { Button, Image }
+export { UiButton, UiImage }
