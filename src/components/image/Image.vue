@@ -1,7 +1,8 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 interface ImageProps {
   src: string
   alt: string
+  loading: 'lazy' | 'eager'
 }
 
 defineOptions({
@@ -11,7 +12,5 @@ defineProps<ImageProps>()
 </script>
 
 <template>
-  <img class="img" :src="src" :alt="alt" />
+  <img class="img" :src="src" :alt="alt" :loading="loading" />
 </template>
-
-<style lang="postcss" src="./image.css" />

@@ -2,9 +2,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, resolve, relative, extname } from 'node:path'
 import { globSync } from 'glob'
 import { defineConfig } from 'vite'
-import { libInjectCss } from 'vite-plugin-lib-inject-css'
 import vue from '@vitejs/plugin-vue'
-import dts from 'vite-plugin-dts'
 import pkg from './package.json'
 
 const dirName = typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url))
@@ -12,20 +10,20 @@ const dirName = typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLTo
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    cssCodeSplit: true,
+    // cssCodeSplit: true,
     copyPublicDir: false,
     lib: {
       entry: resolve(dirName, 'src/index.ts'),
       formats: ['es']
     },
     rollupOptions: {
-      external: ['vue'].concat(
+      external: ['vue', 'node'].concat(
         Object.keys(pkg.peerDependencies || {}),
         Object.keys(pkg.devDependencies || {}),
         Object.keys(pkg.dependencies || {})
       ),
       input: Object.fromEntries(
-        globSync('src/**/*.{ts,vue}', { ignore: 'src/stories/**/*' }).map((file) => {
+        globSync('src/**/*.{ts,vue}', { ignore: ['src/stories/**/*', 'src/**/*.d.ts'] }).map((file) => {
           return [
             relative('src', file.slice(0, file.length - extname(file).length)),
             fileURLToPath(new URL(file, import.meta.url))
@@ -33,7 +31,7 @@ export default defineConfig({
         })
       ),
       output: {
-        assetFileNames: 'lib/assets/[name][extname]',
+        // assetFileNames: 'lib/assets/[name][extname]',
         chunkFileNames: (file) => {
           const name = file.name.split('.')[0].toLowerCase()
           return `lib/${name}.chunk.js`
@@ -51,9 +49,5 @@ export default defineConfig({
       }
     }
   },
-  plugins: [
-    vue(),
-    libInjectCss(),
-    dts({ tsconfigPath: './tsconfig.build.json', outDir: 'dist/types', staticImport: true })
-  ]
+  plugins: [vue()]
 })
