@@ -1,8 +1,10 @@
-name: "Chromatic"
+name: 'Chromatic'
 
 on:
   push:
-    branches: [main]
+    branches: [main, setup-actions]
+    paths:
+      - src/**
   pull_request:
     branches: [main]
 

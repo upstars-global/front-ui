@@ -7,17 +7,6 @@
     "emitDeclarationOnly": true,
     "skipLibCheck": false
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/node_modules",
-    "src/stories/**/*",
-    ".storybook",
-    "dist"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "**/node_modules", "src/stories/**/*", ".storybook", "dist"]
 }
