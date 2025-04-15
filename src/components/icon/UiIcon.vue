@@ -1,18 +1,8 @@
 <script setup lang="ts">
+import type { IconSize, IconSizes, IconProps } from './UiIcon.types.ts'
 import { computed } from 'vue'
 
-type IconSizes = {
-  height: string
-  width: string
-}
-
-type IconProps = {
-  icon?: string
-  src?: string
-  size?: string
-}
-
-const SIZE_CLASSES_LIST: Record<string, string> = {
+const SIZE_CLASSES_LIST: Record<IconSize, string> = {
   '16': 'w-4 h-4',
   '20': 'w-5 h-5',
   '24': 'w-6 h-6',
@@ -26,12 +16,6 @@ const props = withDefaults(defineProps<IconProps>(), {
 })
 
 const iconSize = computed((): IconSizes => {
-  if (Array.isArray(props.size)) {
-    const [width, height] = props.size
-
-    return { height, width }
-  }
-
   return { height: props.size, width: props.size }
 })
 const className = computed(() => SIZE_CLASSES_LIST[props.size])
