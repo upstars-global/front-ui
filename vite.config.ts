@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@src': join(dirName, '/src')
+      '@src': join(dirName, 'src')
     }
   }
 })
