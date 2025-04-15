@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   lint:
+    name: Run linters
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
