@@ -39,6 +39,7 @@
     "build:types": "vue-tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "build:lib": "yarn build:package && yarn build:types",
     "build:storybook": "storybook build",
+    "build:chromatic": "chromatic --build-command='yarn build:storybook' -o='storybook-static' --exit-zero-on-changes",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier . --check",
     "lint:tsc": "vue-tsc --noEmit",
