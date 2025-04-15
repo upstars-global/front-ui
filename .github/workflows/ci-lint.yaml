@@ -1,9 +1,9 @@
-name: ci-lint
+name: ci-linters
 
 on: [push]
 
 jobs:
-  ci:
+  lint:
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read

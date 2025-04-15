@@ -1,4 +1,4 @@
-name: 'Chromatic'
+name: ci-chromatic
 
 on:
   push:
