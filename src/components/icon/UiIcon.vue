@@ -9,7 +9,7 @@ type IconSizes = {
 type IconProps = {
   icon?: string
   src?: string
-  size?: string | string[]
+  size?: string
 }
 
 const SIZE_CLASSES_LIST: Record<string, string> = {
