@@ -1,12 +1,13 @@
-name: chromatic
+name: ci-chromatic
 
 on:
   push:
-    branches: [main, setup-actions]
-    paths:
-      - src/**
+    branches: [main]
   pull_request:
     branches: [main]
+    paths:
+      - docs/**
+      - src/**
 
 jobs:
   chromatic:
@@ -30,7 +31,6 @@ jobs:
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
-          # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildCommand: yarn build:chromatic
+          buildCommand: yarn build:storybook
           outputDir: storybook-static
