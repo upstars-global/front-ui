@@ -46,7 +46,7 @@
     "lintfix": "eslint . --fix && prettier --write --list-different ."
   },
   "dependencies": {
-    "tailwindcss": "~3.4.17",
+    "tailwindcss": "~4.1.4",
     "vue": "~3.5.12"
   },
   "devDependencies": {
