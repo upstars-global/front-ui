@@ -1,7 +1,10 @@
+import type { ComponentProps } from 'vue-component-type-helpers'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { computed } from 'vue'
 import { ICONS, ICONS_LIST } from '../config/icons'
 import UiIcon from '@src/components/icon/UiIcon.vue'
+
+type IconPropsAndCustomArgs = ComponentProps<typeof UiIcon> & { color?: string }
 
 const names = Object.keys(ICONS)
 
@@ -29,7 +32,7 @@ const meta = {
         args: computed(() => {
           return {
             ...args,
-            icon: ICONS[args.icon],
+            icon: args.icon ? ICONS[args.icon] : '',
             style: { color: args.color }
           }
         })
@@ -37,7 +40,7 @@ const meta = {
     },
     template: `<UiIcon v-bind="args" />`
   })
-} satisfies Meta<typeof UiIcon>
+} satisfies Meta<IconPropsAndCustomArgs>
 
 export default meta
 type Story = StoryObj<typeof meta>

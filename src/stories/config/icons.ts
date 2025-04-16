@@ -40,7 +40,7 @@ export const ICONS_LIST = [
   '/assets/icons/youtube.svg'
 ]
 
-export const ICONS = {
+export const ICONS: Record<string, unknown> = {
   address,
   arrowRight,
   cashback,

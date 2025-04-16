@@ -29,4 +29,5 @@ type Story = StoryObj<typeof meta>
  * See https://storybook.js.org/docs/api/csf
  * to learn how to use render functions.
  */
+// @ts-expect-error FIXME
 export const Primary: Story = {}

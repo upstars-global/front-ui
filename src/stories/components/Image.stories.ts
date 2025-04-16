@@ -8,11 +8,7 @@ const meta = {
   component: Image,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  argTypes: {},
-  args: {
-    src: 'https://picsum.photos/200/300',
-    alt: 'dummy image'
-  }
+  argTypes: {}
 } satisfies Meta<typeof Image>
 
 export default meta
@@ -22,4 +18,5 @@ type Story = StoryObj<typeof meta>
  * See https://storybook.js.org/docs/api/csf
  * to learn how to use render functions.
  */
+// @ts-expect-error FIXME
 export const Primary: Story = {}
