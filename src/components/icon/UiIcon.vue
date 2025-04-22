@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { IconSize, IconSizes, IconProps } from './UiIcon.types.ts'
 import { computed } from 'vue'
+import { icons } from './icons.ts'
 
 const SIZE_CLASSES_LIST: Record<IconSize, string> = {
   '16': 'w-4 h-4',
@@ -15,6 +16,12 @@ const props = withDefaults(defineProps<IconProps>(), {
   size: '24'
 })
 
+const iconRaw = computed(() => {
+  if (!props.name) {
+    return
+  }
+  return icons[props.name]
+})
 const iconSize = computed((): IconSizes => {
   return { height: props.size, width: props.size }
 })
@@ -22,6 +29,6 @@ const className = computed(() => SIZE_CLASSES_LIST[props.size])
 </script>
 
 <template>
-  <div v-if="icon && !src" :class="className" v-html="icon" />
+  <div v-if="iconRaw && !src" :class="className" v-html="iconRaw" />
   <img v-else v-bind="iconSize" :class="className" :src="src || undefined" alt="icon" />
 </template>

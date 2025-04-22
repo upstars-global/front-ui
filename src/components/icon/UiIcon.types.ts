@@ -6,7 +6,7 @@ export type IconSizes = {
 }
 
 export type IconProps = {
-  icon?: string
+  name?: string
   src?: string
   size?: IconSize
 }

@@ -3,6 +3,7 @@ import { dirname, resolve, relative, extname } from 'node:path'
 import { globSync } from 'glob'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 import pkg from './package.json'
 
 const dirName = typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url))
@@ -10,7 +11,6 @@ const dirName = typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLTo
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    // cssCodeSplit: true,
     copyPublicDir: false,
     lib: {
       entry: resolve(dirName, 'src/index.ts'),
@@ -31,14 +31,14 @@ export default defineConfig({
         })
       ),
       output: {
-        // assetFileNames: 'lib/assets/[name][extname]',
+        assetFileNames: 'lib/assets/[name][extname]',
         chunkFileNames: (file) => {
-          const name = file.name.split('.')[0].toLowerCase()
+          const name = file.name.split('.')[0]
           return `lib/${name}.chunk.js`
         },
         entryFileNames: (file) => {
           if (file.name.includes('components')) {
-            return `${file.name.toLowerCase()}.js`
+            return `${file.name}.js`
           }
 
           return `${file.name}.js`
@@ -49,5 +49,5 @@ export default defineConfig({
       }
     }
   },
-  plugins: [vue()]
+  plugins: [vue(), viteStaticCopy({ targets: [{ src: 'src/assets', dest: '' }] })]
 })

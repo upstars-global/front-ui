@@ -16,7 +16,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     color: { control: 'color' },
-    icon: { control: 'select', options: names },
+    name: { control: 'select', options: names },
     src: { control: 'select', options: ICONS_LIST },
     size: { control: 'select', options: ['16', '20', '24', '32', '40', '48'] }
   },
@@ -32,7 +32,6 @@ const meta = {
         args: computed(() => {
           return {
             ...args,
-            icon: args.icon ? ICONS[args.icon] : '',
             style: { color: args.color }
           }
         })
@@ -51,7 +50,7 @@ type Story = StoryObj<typeof meta>
  */
 export const SvgIcon: Story = {
   args: {
-    icon: names[0],
+    name: names[0],
     src: ''
   },
   argTypes: {
@@ -61,12 +60,12 @@ export const SvgIcon: Story = {
 
 export const ImageIcon: Story = {
   args: {
-    icon: '',
+    name: '',
     src: ICONS_LIST[0]
   },
   argTypes: {
     color: { table: { disable: true } },
-    icon: { table: { disable: true } }
+    name: { table: { disable: true } }
   }
 }
 
@@ -80,7 +79,7 @@ const listTemplate = `
       class="flex flex-col gap-2 items-center justify-center"
     >
       <div class="flex w-32 h-32 items-center justify-center rounded-xl text-slate-900 ring-1 ring-inset ring-slate-900/[0.08]">
-        <UiIcon :icon="icons[name]" class="m-auto" />
+        <UiIcon :name="name" class="m-auto" />
       </div>
       <span class="text-xs">{{ name }}</span>
     </li>
@@ -91,7 +90,7 @@ const listTemplate = `
 export const ListOfSvgIcons: Story = {
   render: () => ({
     components: { UiIcon },
-    setup: () => ({ names, icons: ICONS }),
+    setup: () => ({ names }),
     template: listTemplate
   }),
   parameters: {
