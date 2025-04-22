@@ -1,0 +1,7 @@
+@import "_checkbox.css";
+
+:root {
+  --white: 255, 255, 255;
+  --black: 0, 0, 0;
+  --transparent: transparent;
+}

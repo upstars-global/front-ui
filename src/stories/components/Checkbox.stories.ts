@@ -8,15 +8,21 @@ const meta = {
   decorators: [emitsObserver],
   tags: ['autodocs'],
   argTypes: {
+    name: { control: 'text' },
     label: { control: 'text' },
     disabled: { control: 'boolean' },
     required: { control: 'boolean' },
-    error: { control: 'text' }
+    form: { control: 'text' },
+    icon: { control: 'text' },
+    error: { control: 'text' },
+    requiredMessage: { control: 'text' }
   },
   args: {
-    label: 'checkbox',
-    modelValue: false,
-    required: false
+    label: 'Checkbox label',
+    name: 'checkbox',
+    disabled: false,
+    required: false,
+    modelValue: false
   },
   render: (args) => ({
     name: 'Story',
@@ -30,3 +36,28 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Common: Story = {}
+
+export const Checked: Story = {
+  args: {
+    modelValue: true
+  }
+}
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
+  }
+}
+
+export const Required: Story = {
+  args: {
+    required: true,
+    requiredMessage: 'This field is required'
+  }
+}
+
+export const Error: Story = {
+  args: {
+    error: 'Need to be checked'
+  }
+}

@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import type { FormElementProps } from '../types.ts'
+import { ref } from 'vue'
+import UiIcon from '../icon/UiIcon.vue'
+import checkmark from '../../assets/icons/check.svg?raw'
+import exclamationTriangle from '../../assets/icons/exclamation-triangle.svg?raw'
+import exclamationCircle from '../../assets/icons/exclamation-circle.svg?raw'
+
 const model = defineModel<boolean>('modelValue', {
   required: true
 })
 
-type CheckboxProps = {
-  label: string
-  disabled?: boolean
+interface CheckboxProps extends FormElementProps {
+  icon?: string
+  requiredMessage?: string
   error?: string
-  required?: boolean
 }
 
 type CheckboxEmits = {
@@ -16,18 +22,59 @@ type CheckboxEmits = {
 
 defineProps<CheckboxProps>()
 defineEmits<CheckboxEmits>()
+
+const isChecked = ref(model.value)
+const handleChange = (event: Event) => {
+  isChecked.value = (event.target as HTMLInputElement).checked
+}
 </script>
 
 <template>
-  <div>
-    <label>
-      <input v-model="model" type="checkbox" :disabled="disabled" :required="required" />
+  <label
+    class="ui-checkbox relative flex flex-col max-w-max select-none"
+    :class="{
+      'is-checked': isChecked,
+      'cursor-pointer': !disabled,
+      'is-disabled cursor-not-allowed': disabled,
+      'is-invalid': !isChecked && error,
+      'is-required': required
+    }"
+  >
+    <input
+      v-model="model"
+      class="absolute top-0 left-0 opacity-0"
+      type="checkbox"
+      :name="name"
+      :form="form"
+      :disabled="disabled"
+      :required="required"
+      @change="handleChange"
+    />
+    <span class="ui-checkbox__inner flex items-center">
+      <slot name="checkmark">
+        <div class="flex justify-center items-center w-8 h-8">
+          <div
+            class="ui-checkbox__checkmark w-5 h-5 relative after:absolute after:w-6 after:h-6 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2"
+          >
+            <UiIcon v-show="isChecked" :icon="icon || checkmark" size="full" />
+          </div>
+        </div>
+      </slot>
       <slot name="label">
-        <span>{{ label }}</span>
+        <span class="pl-1">{{ label }}</span>
       </slot>
-      <slot name="error-message">
-        <span>{{ error }}</span>
-      </slot>
-    </label>
-  </div>
+    </span>
+    <slot name="error-message">
+      <span v-if="!isChecked && error" class="ui-checkbox__error-message flex gap-2 pl-2">
+        <UiIcon :icon="exclamationTriangle" size="16" />
+        {{ error }}
+      </span>
+    </slot>
+    <slot v-if="required" name="required-message">
+      <span class="ui-checkbox__required-message flex gap-2 pl-2">
+        <UiIcon :icon="exclamationCircle" size="16" />
+        {{ requiredMessage }}
+      </span>
+    </slot>
+  </label>
 </template>

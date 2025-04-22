@@ -1,10 +1,7 @@
-interface FormElementProps {
-  autocomplete?: string
-  caption?: string
+export interface FormElementProps {
+  name: string
+  label?: string
   disabled?: boolean
   form?: string
-  id?: string
-  label?: string
-  name?: string
   required?: boolean
 }
