@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin')
+import plugin from 'tailwindcss/plugin'
 
 export const TypographyPlugin = plugin(({ addBase }) => {
   addBase({
@@ -31,14 +31,14 @@ export const TypographyPlugin = plugin(({ addBase }) => {
     },
 
     '.text-button-xs': {
-      lineHeight: '100%',
+      lineHeight: 'var(--text-button-line_height-slab)',
       fontSize: 'var(--text-button-font_size-xs)',
       letterSpacing: 'var(--text-button-letter_spacing-label)',
       fontWeight: 'var(--text-button-font_weight-label)'
     },
 
     '.text-button-caption': {
-      lineHeight: 'var(--text-button-line_height-slab)',
+      lineHeight: '100%',
       fontSize: 'var(--text-button-font_size-caption)',
       letterSpacing: 'var(--text-button-letter_spacing-caption)',
       fontWeight: 'var(--text-button-font_weight-caption)'

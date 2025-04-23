@@ -1,6 +1,5 @@
-const plugin = require('tailwindcss/plugin')
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { ButtonSizes, ButtonTypes, ButtonColors, ButtonVariants } = require('./Button.types.ts')
+import plugin from 'tailwindcss/plugin'
+import { ButtonSizes, ButtonTypes, ButtonColors, ButtonVariants } from './Button.types.ts'
 
 const states = ['', 'hover', 'active']
 function generateVariantStyles(variant, color, stylesPerState) {
@@ -92,6 +91,7 @@ function getSizeStyles() {
         height: `var(--button-height-slab-${size})`,
         borderRadius: `var(--button-radius-slab-sm)`,
         minWidth: `var(--button-minwidth-slab-${size})`,
+        maxWidth: `var(--button-maxwidth-slab-${size})`,
         padding: `0 var(--button-padding-x-slab-${size})`,
         gap: `var(--button-gap-slab-${size})`
       },
@@ -118,13 +118,21 @@ export const btnPlugin = plugin(({ addComponents }) => {
       transitionDuration: 'var(--button-transition-duration)'
     },
 
-    '.disabled .ui-button__content': {
+    '.ui-button.disabled .ui-button__content': {
       filter: 'var(--effects-filter-disable)'
     },
 
     '.ui-button__content.outline': {
       'border-width': 'var(--button-borderwidth-outline)',
       'border-style': 'solid'
+    },
+
+    '.ui-button.action': {
+      maxWidth: 'var(--button-maxwidth-action-sm)'
+    },
+
+    '.ui-button.action.loading .loading-spin': {
+      top: 'calc(var(--button-height-action-sm) / 2)'
     },
 
     '.ui-button.action .label-text': {

@@ -4,7 +4,7 @@ import UiButton from '@src/components/button/UiButton.vue'
 import { computed } from 'vue'
 import { ButtonColors, ButtonVariants, ButtonSizes, ButtonTypes } from '../../components/button/Button.types'
 
-const IconsNames = Object.keys(ICONS)
+const iconsNames = Object.keys(ICONS)
 
 const colorOptions = Object.keys(ButtonColors) as Array<keyof typeof ButtonColors>
 const variantOptions = Object.keys(ButtonVariants) as Array<keyof typeof ButtonVariants>
@@ -42,9 +42,9 @@ const meta: Meta<typeof UiButton> = {
       options: typeOptions,
       description: 'Button internal type'
     },
-    leadingIcon: { control: 'select', options: IconsNames, description: 'Name of leading icon' },
-    trailingIcon: { control: 'select', options: IconsNames, description: 'Name of trailing icon' },
-    icon: { control: 'select', options: IconsNames, description: 'Single icon mode' },
+    leadingIcon: { control: 'select', options: iconsNames, description: 'Name of leading icon' },
+    trailingIcon: { control: 'select', options: iconsNames, description: 'Name of trailing icon' },
+    icon: { control: 'select', options: iconsNames, description: 'Single icon mode' },
     label: { control: 'text', description: 'Button label text' },
     caption: { control: 'text', description: 'Auxiliary caption below the label' },
     disabled: { control: 'boolean' },
@@ -52,7 +52,7 @@ const meta: Meta<typeof UiButton> = {
     fullWidth: { control: 'boolean' },
     fullWidthMobile: { control: 'boolean' },
     uppercase: { control: 'boolean' },
-    submit: { control: 'boolean', description: 'Use native submit behavior' },
+    buttonType: { control: 'text', description: 'Use native submit behavior' },
     initialCase: { control: 'boolean', description: 'Prevent automatic uppercase transform' }
   },
   args: {
@@ -70,7 +70,7 @@ const meta: Meta<typeof UiButton> = {
     fullWidth: false,
     fullWidthMobile: false,
     uppercase: false,
-    submit: false,
+    buttonType: 'button',
     initialCase: false
   },
   render: (args) => ({
@@ -180,8 +180,8 @@ export const Types: Story = {
 // With leading and trailing icons
 export const WithIcons: Story = {
   args: {
-    leadingIcon: IconsNames[0],
-    trailingIcon: IconsNames[0],
+    leadingIcon: iconsNames[0],
+    trailingIcon: iconsNames[0],
     label: 'With Icons'
   }
 }

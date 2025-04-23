@@ -6,9 +6,9 @@ import {
   ButtonSizes,
   ButtonVariants,
   ButtonTypes,
-  type IEmits,
-  type IProps,
-  type ISlots,
+  type ButtonEmits,
+  type ButtonProps,
+  type ButtonSlots,
   type ButtonType
 } from './Button.types'
 import loader from '../../assets/icons/loader.svg'
@@ -16,20 +16,23 @@ import loader from '../../assets/icons/loader.svg'
 defineOptions({
   name: 'UiButton'
 })
-const props = withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<ButtonProps>(), {
   color: ButtonColors.primary,
   variant: ButtonVariants.filled,
   type: ButtonTypes.standard,
-  size: ButtonSizes.md
+  size: ButtonSizes.md,
+  buttonType: 'button'
 })
-defineSlots<ISlots>()
-defineEmits<IEmits>()
+defineSlots<ButtonSlots>()
+defineEmits<ButtonEmits>()
 
 const buttonClasses = computed(() => {
   const canFullWidth = props.type !== ButtonTypes.action && props.type !== ButtonTypes.icon
   const fullWidthClass = canFullWidth && props.fullWidth && 'w-full'
   const fullWidthMobileClass = canFullWidth && props.fullWidthMobile && 'w-full md:w-auto'
   const textCase = props.initialCase ? 'normal-case' : props.uppercase ? 'uppercase' : ''
+  const textOverflow = props.type === ButtonTypes.action ? 'whitespace-normal' : 'whitespace-nowrap'
+  const display = props.type === ButtonTypes.action && 'flex'
 
   let fontClass = ''
   if (props.type === ButtonTypes.standard) {
@@ -38,23 +41,32 @@ const buttonClasses = computed(() => {
       [ButtonSizes.md]: 'text-button-md',
       [ButtonSizes.sm]: 'text-button-sm'
     }
-    fontClass = sizeMap[props.size] ?? 'text-button-xs'
+    fontClass = sizeMap[props.size] ?? 'text-button-sm'
   } else if (props.type === ButtonTypes.caption) {
     const sizeMap: Record<string, string> = {
       [ButtonSizes.lg]: 'text-button-xl',
       [ButtonSizes.md]: 'text-button-md',
-      [ButtonSizes.sm]: 'text-button-xs'
+      [ButtonSizes.sm]: 'text-button-sm'
     }
-    fontClass = sizeMap[props.size] ?? 'text-button-xs'
+    fontClass = sizeMap[props.size] ?? 'text-button-sm'
   } else {
     fontClass = 'text-button-xs'
   }
   const disabled = props.disabled || props.loading ? 'disabled pointer-events-none' : ''
+  const loading = props.loading && 'loading'
 
-  return [fullWidthClass, fullWidthMobileClass, textCase, fontClass, disabled, props.type].filter(Boolean)
+  return [
+    fullWidthClass,
+    fullWidthMobileClass,
+    textCase,
+    fontClass,
+    disabled,
+    loading,
+    props.type,
+    textOverflow,
+    display
+  ].filter(Boolean)
 })
-
-const buttonType = computed(() => (props.submit ? 'submit' : 'button'))
 
 const contentClasses = computed(() => {
   const types: Partial<Record<ButtonType, string[]>> = {
@@ -85,7 +97,7 @@ const canShowIcon = computed(() => {
 
 <template>
   <button
-    class="ui-button outline-0 box-border relative"
+    class="ui-button outline-0 box-border relative text-ellipsis select-none"
     :class="buttonClasses"
     :type="buttonType"
     @click="$emit('click', $event)"
@@ -103,7 +115,7 @@ const canShowIcon = computed(() => {
       </div>
       <template v-if="canShowLabel">
         <UiIcon v-if="leadingIcon && type === ButtonTypes.standard" :icon="leadingIcon" size="24" />
-        <p class="label-text">
+        <p class="label-text w-full overflow-hidden text-ellipsis">
           <slot>
             {{ label }}
           </slot>
@@ -116,8 +128,10 @@ const canShowIcon = computed(() => {
     </div>
     <div
       v-if="loading"
-      class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-      :class="{ 'self-start mt-1': type === ButtonTypes.action }"
+      class="loading-spin absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+      :class="{
+        'top-1/2': type !== ButtonTypes.action
+      }"
     >
       <UiIcon :src="loader" size="24" class="animate-spin origin-center" />
     </div>

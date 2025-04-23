@@ -30,7 +30,7 @@ export type ButtonVariant = keyof typeof ButtonVariants
 export type ButtonSize = keyof typeof ButtonSizes
 export type ButtonType = keyof typeof ButtonTypes
 
-export interface IProps {
+export interface ButtonProps {
   color?: ButtonColor
   variant?: ButtonVariant
   size?: ButtonSize
@@ -51,14 +51,13 @@ export interface IProps {
   uppercase?: boolean
   initialCase?: boolean
 
-  submit?: boolean
+  buttonType?: 'submit' | 'button'
 }
 
-export interface IEmits {
+export interface ButtonEmits {
   (event: 'click', value: MouseEvent): void
 }
-export interface ISlots {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  default(): any
-  caption(): any
+export interface ButtonSlots {
+  default(): unknown
+  caption(): unknown
 }
