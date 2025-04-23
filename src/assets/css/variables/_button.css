@@ -24,7 +24,7 @@
   --button-borderwidth-outline: 2px;
 
   /*Transition*/
-  --button-transition-property: 'background, color, border-color';
+  --button-transition-property: 'background, color, border-color, filter';
   --button-transition-duration: 0.3s;
 
   /*gaps*/

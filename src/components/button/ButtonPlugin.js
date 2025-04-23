@@ -1,15 +1,17 @@
 import plugin from 'tailwindcss/plugin'
 import { ButtonSizes, ButtonTypes, ButtonColors, ButtonVariants } from './Button.types.ts'
 
-const states = ['', 'hover', 'active']
+const defaultState = 'default'
+const states = [defaultState, 'hover', 'active']
 function generateVariantStyles(variant, color, stylesPerState) {
   return states.reduce((acc, state) => {
-    const selector = state
-      ? `.ui-button:${state} .ui-button__content.${variant}.${color}`
+    const stateName = state === defaultState ? '' : state
+    const selector = stateName
+      ? `.ui-button:${stateName} .ui-button__content.${variant}.${color}`
       : `.ui-button .ui-button__content.${variant}.${color}`
 
     acc[selector] = Object.entries(stylesPerState).reduce((styleObj, [key, value]) => {
-      styleObj[key] = typeof value === 'function' ? value(variant, color, state) : value
+      styleObj[key] = typeof value === 'function' ? value(variant, color, stateName) : value
       return styleObj
     }, {})
 

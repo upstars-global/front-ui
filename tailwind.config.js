@@ -11,7 +11,11 @@ const uiPlugin = plugin((helpers) => {
 export default {
   content: ['./src/**/*.{vue,ts,tsx,css}'],
   theme: {
-    extend: {}
+    extend: {
+      animation: {
+        'spin-reverse': 'spin 1s linear infinite reverse'
+      }
+    }
   },
   plugins: [uiPlugin]
 }

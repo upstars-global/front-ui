@@ -133,7 +133,7 @@ const canShowIcon = computed(() => {
         'top-1/2': type !== ButtonTypes.action
       }"
     >
-      <UiIcon :src="loader" size="24" class="animate-spin origin-center" />
+      <UiIcon :src="loader" size="24" class="animate-spin-reverse origin-center" />
     </div>
   </button>
 </template>
