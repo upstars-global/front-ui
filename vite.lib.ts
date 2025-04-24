@@ -31,7 +31,6 @@ export default defineConfig({
         })
       ),
       output: {
-        assetFileNames: 'lib/assets/[name][extname]',
         chunkFileNames: (file) => {
           const name = file.name.split('.')[0]
           return `lib/${name}.chunk.js`
