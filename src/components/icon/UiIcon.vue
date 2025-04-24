@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { IconSize, IconSizes, IconProps } from './UiIcon.types.ts'
+import type { IconSize, IconSizes, IconProps } from './UiIcon.types'
 import { computed } from 'vue'
-import { icons } from './icons.ts'
+import { icons } from './icons'
 
 const SIZE_CLASSES_LIST: Record<IconSize, string> = {
   '16': 'w-4 h-4',
@@ -25,7 +25,7 @@ const iconRaw = computed(() => {
 const iconSize = computed((): IconSizes => {
   return { height: props.size, width: props.size }
 })
-const className = computed(() => SIZE_CLASSES_LIST[props.size])
+const className = computed(() => `ui-icon ${SIZE_CLASSES_LIST[props.size]}`)
 </script>
 
 <template>

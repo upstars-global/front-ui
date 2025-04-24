@@ -5,7 +5,7 @@ export type IconSizes = {
   width: IconSize
 }
 
-export type IconProps = {
+export interface IconProps {
   name?: string
   src?: string
   size?: IconSize

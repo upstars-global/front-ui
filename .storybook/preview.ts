@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/vue3'
 import { setup } from '@storybook/vue3'
-import { addIcons } from '@src/components/icon/icons.ts'
-import { ICONS } from '@src/stories/config/icons.ts'
+import { addIcons } from '@src/components/icon/icons'
+import { ICONS } from '@src/stories/config/icons'
 import './css/tailwind.css'
 
 setup(async () => {
