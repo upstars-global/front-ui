@@ -2,16 +2,19 @@ import { ICONS } from '@src/stories/config/icons.ts'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import UiButton from '@src/components/button/UiButton.vue'
 import { computed } from 'vue'
+import type { ComponentProps } from 'vue-component-type-helpers'
 import { ButtonColors, ButtonVariants, ButtonSizes, ButtonTypes } from '../../components/button/Button.types'
 
 const iconsNames = Object.keys(ICONS)
+
+type ButtonPropsAndCustomArgs = ComponentProps<typeof UiButton> & { icon?: string; leadingIcon?: string }
 
 const colorOptions = Object.keys(ButtonColors) as Array<keyof typeof ButtonColors>
 const variantOptions = Object.keys(ButtonVariants) as Array<keyof typeof ButtonVariants>
 const sizeOptions = Object.keys(ButtonSizes) as Array<keyof typeof ButtonSizes>
 const typeOptions = Object.keys(ButtonTypes) as Array<keyof typeof ButtonTypes>
 
-const meta: Meta<typeof UiButton> = {
+const meta = {
   title: 'UI Kit/Button',
   component: UiButton,
   parameters: {
@@ -77,20 +80,32 @@ const meta: Meta<typeof UiButton> = {
     name: 'Story',
     components: { UiButton },
     setup: () => {
+      const icon = computed(() => {
+        const name: string = args.icon || ''
+        return ICONS[name]
+      })
+      const leadingIcon = computed(() => {
+        const name: string = args.leadingIcon || ''
+        return ICONS[name]
+      })
+      const trailingIcon = computed(() => {
+        const name: string = args.trailingIcon || ''
+        return ICONS[name]
+      })
       return {
         args: computed(() => {
           return {
             ...args,
-            icon: ICONS[args.icon],
-            leadingIcon: ICONS[args.leadingIcon],
-            trailingIcon: ICONS[args.trailingIcon]
+            icon: ICONS[icon.value],
+            leadingIcon: ICONS[leadingIcon.value],
+            trailingIcon: ICONS[trailingIcon.value]
           }
         })
       }
     },
     template: `<UiButton v-bind="args" />`
   })
-}
+} satisfies Meta<ButtonPropsAndCustomArgs>
 
 export default meta
 type Story = StoryObj<typeof meta>
