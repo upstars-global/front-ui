@@ -16,7 +16,8 @@
   --checkbox-transition-property: theme('transitionProperty.colors');
   --checkbox-transition-duration: theme('transitionDuration.300');
   --checkbox-transition-timing-function: theme('transitionTimingFunction.in');
-  --checkbox-transition: var(--checkbox-transition-property) var(--checkbox-transition-duration) var(--checkbox-transition-timing-function);
+  --checkbox-transition: var(--checkbox-transition-property) var(--checkbox-transition-duration)
+    var(--checkbox-transition-timing-function);
 
   /* Hover state */
   --checkbox-hovered-color: rgba(var(--black), 1);
