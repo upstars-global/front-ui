@@ -122,7 +122,10 @@ const canShowIcon = computed(() => {
         </p>
         <UiIcon v-if="trailingIcon && type === ButtonTypes.standard" :icon="trailingIcon" size="24" />
       </template>
-      <span v-if="caption && type === ButtonTypes.caption" class="text-button-caption">
+      <span
+        v-if="caption && type === ButtonTypes.caption"
+        class="text-button-caption w-full overflow-hidden text-ellipsis"
+      >
         <slot name="caption">{{ caption }}</slot>
       </span>
     </div>

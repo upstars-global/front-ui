@@ -141,6 +141,10 @@ export const btnPlugin = plugin(({ addComponents }) => {
       color: 'var(--button-color-action-label)'
     },
 
+    '.ui-button .text-button-caption': {
+      opacity: 'var(--button-opacity-caption)'
+    },
+
     ...getColorsStyles(),
     ...getSizeStyles()
   })

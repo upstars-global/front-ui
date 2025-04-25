@@ -1,14 +1,14 @@
 :root {
-  --text-button-font_size-caption: 11px;
-  --text-button-font_size-xs: 12px;
-  --text-button-font_size-sm: 15px;
-  --text-button-font_size-md: 17px;
-  --text-button-font_size-lg: 19px;
-  --text-button-font_size-xl: 20px;
-  --text-button-letter_spacing-caption: -2%;
-  --text-button-letter_spacing-label: -3%;
-  --text-button-line_height-slab: 14px;
+  --text-button-fontsize-caption: 11px;
+  --text-button-fontsize-xs: 12px;
+  --text-button-fontsize-sm: 15px;
+  --text-button-fontsize-md: 17px;
+  --text-button-fontsize-lg: 19px;
+  --text-button-fontsize-xl: 20px;
+  --text-button-letterspacing-caption: -0.8px;
+  --text-button-letterspacing-label: -0.2px;
+  --text-button-lineheight-slab: 14px;
 
-  --text-button-font_weight-caption: 400;
-  --text-button-font_weight-label: 500;
+  --text-button-fontweight-caption: 400;
+  --text-button-fontweight-label: 500;
 }
