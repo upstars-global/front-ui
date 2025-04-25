@@ -43,7 +43,7 @@ function getColorsStyles() {
       },
       [ButtonVariants.outline]: {
         'border-color': (variant, color, state) =>
-          `var(--button-border_color-${variant}-${color}${state ? `-${state}` : ''})`,
+          `var(--button-bordercolor-${variant}-${color}${state ? `-${state}` : ''})`,
         background: backgroundTemplate,
         color: colorTemplate
       },
