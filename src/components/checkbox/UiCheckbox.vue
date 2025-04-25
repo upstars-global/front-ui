@@ -49,26 +49,24 @@ const handleChange = (event: Event) => {
     />
     <span class="ui-checkbox__inner flex items-center">
       <slot name="checkmark">
-        <div class="flex justify-center items-center w-8 h-8">
-          <div
-            class="ui-checkbox__checkmark w-5 h-5 relative after:absolute after:w-6 after:h-6 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2"
-          >
-            <UiIcon v-show="isChecked" :name="icon || 'checkmark'" size="full" />
-          </div>
+        <div
+          class="ui-checkbox__checkmark w-5 h-5 self-baseline shrink-0 relative after:absolute after:w-6 after:h-6 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2"
+        >
+          <UiIcon v-show="isChecked" :name="icon || 'checkmark'" size="full" />
         </div>
       </slot>
       <slot name="label">
-        <span class="pl-1">{{ label }}</span>
+        <span>{{ label }}</span>
       </slot>
     </span>
     <slot name="error-message">
-      <span v-if="!isChecked && error" class="ui-checkbox__error-message flex gap-2 pl-2">
+      <span v-if="!isChecked && error" class="ui-checkbox__error-message flex">
         <UiIcon name="exclamationTriangle" size="16" />
         {{ error }}
       </span>
     </slot>
     <slot v-if="required" name="required-message">
-      <span class="ui-checkbox__required-message flex gap-2 pl-2">
+      <span class="ui-checkbox__required-message flex">
         <UiIcon name="exclamationCircle" size="16" />
         {{ requiredMessage }}
       </span>

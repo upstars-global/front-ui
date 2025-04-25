@@ -61,3 +61,32 @@ export const Error: Story = {
     error: 'Need to be checked'
   }
 }
+
+export const CustomLabelSlot: Story = {
+  render: (args) => ({
+    name: 'Story',
+    components: { UiCheckbox },
+    setup: () => ({ args }),
+    template: `<UiCheckbox v-bind="args" v-on="$attrs.listeners">
+    <template #label>
+      <span>Custom label via slot</span>
+    </template>
+  </UiCheckbox>`
+  })
+}
+
+export const CustomErrorSlot: Story = {
+  args: {
+    error: 'error'
+  },
+  render: (args) => ({
+    name: 'Story',
+    components: { UiCheckbox },
+    setup: () => ({ args }),
+    template: `<UiCheckbox v-bind="args" v-on="$attrs.listeners">
+    <template #error-message>
+      <span style="color: tomato; font-size: 10px;">Custom error message via slot</span>
+    </template>
+  </UiCheckbox>`
+  })
+}
