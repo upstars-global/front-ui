@@ -1,11 +1,11 @@
-import { ICONS } from '@src/stories/config/icons.ts'
-import type { Meta, StoryObj } from '@storybook/vue3'
 import UiButton from '@src/components/button/UiButton.vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import { computed } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
-import { ButtonColors, ButtonVariants, ButtonSizes, ButtonTypes } from '../../components/button/Button.types'
+import { ButtonColors, ButtonSizes, ButtonTypes, ButtonVariants } from '../../components/button/Button.types'
+import { ICONS } from '../config/icons'
 
-const iconsNames = Object.keys(ICONS)
+const names = Object.keys(ICONS)
 
 type ButtonPropsAndCustomArgs = ComponentProps<typeof UiButton> & { icon?: string; leadingIcon?: string }
 
@@ -45,9 +45,9 @@ const meta = {
       options: typeOptions,
       description: 'Button internal type'
     },
-    leadingIcon: { control: 'select', options: iconsNames, description: 'Name of leading icon' },
-    trailingIcon: { control: 'select', options: iconsNames, description: 'Name of trailing icon' },
-    icon: { control: 'select', options: iconsNames, description: 'Single icon mode' },
+    leadingIcon: { control: 'select', options: names, description: 'Name of leading icon' },
+    trailingIcon: { control: 'select', options: names, description: 'Name of trailing icon' },
+    icon: { control: 'select', options: names, description: 'Single icon mode' },
     label: { control: 'text', description: 'Button label text' },
     caption: { control: 'text', description: 'Auxiliary caption below the label' },
     disabled: { control: 'boolean' },
@@ -65,7 +65,7 @@ const meta = {
     type: 'standard',
     leadingIcon: '',
     trailingIcon: '',
-    icon: '',
+    icon: names[0],
     label: 'Button',
     caption: '',
     disabled: false,
@@ -81,24 +81,21 @@ const meta = {
     components: { UiButton },
     setup: () => {
       const icon = computed(() => {
-        const name: string = args.icon || ''
-        return ICONS[name]
+        return args.icon || ''
       })
       const leadingIcon = computed(() => {
-        const name: string = args.leadingIcon || ''
-        return ICONS[name]
+        return args.leadingIcon || ''
       })
       const trailingIcon = computed(() => {
-        const name: string = args.trailingIcon || ''
-        return ICONS[name]
+        return args.trailingIcon || ''
       })
       return {
         args: computed(() => {
           return {
             ...args,
-            icon: ICONS[icon.value],
-            leadingIcon: ICONS[leadingIcon.value],
-            trailingIcon: ICONS[trailingIcon.value]
+            icon: icon.value,
+            leadingIcon: leadingIcon.value,
+            trailingIcon: trailingIcon.value
           }
         })
       }
@@ -174,7 +171,7 @@ export const Types: Story = {
         }
       }
 
-      return { args, options: typeOptions, ICONS, customProps }
+      return { args, options: typeOptions, names, customProps }
     },
     template: `
       <div style="display: flex; gap: 1rem;">
@@ -183,7 +180,7 @@ export const Types: Story = {
           :key="t"
           v-bind="{ ...args, type: t, ...customProps[t] }"
           caption="caption"
-          :icon="ICONS.fullscreen"
+          :icon="names[0]"
         >
           {{ t }} Type
         </UiButton>
@@ -195,8 +192,8 @@ export const Types: Story = {
 // With leading and trailing icons
 export const WithIcons: Story = {
   args: {
-    leadingIcon: iconsNames[0],
-    trailingIcon: iconsNames[0],
+    leadingIcon: names[0],
+    trailingIcon: names[0],
     label: 'With Icons'
   }
 }

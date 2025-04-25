@@ -111,16 +111,16 @@ const canShowIcon = computed(() => {
         class="flex justify-center items-center"
         :class="type === ButtonTypes.action && contentClasses"
       >
-        <UiIcon :icon="icon" size="24" />
+        <UiIcon :name="icon" size="24" />
       </div>
       <template v-if="canShowLabel">
-        <UiIcon v-if="leadingIcon && type === ButtonTypes.standard" :icon="leadingIcon" size="24" />
+        <UiIcon v-if="leadingIcon && type === ButtonTypes.standard" :name="leadingIcon" size="24" />
         <p class="label-text w-full overflow-hidden text-ellipsis">
           <slot>
             {{ label }}
           </slot>
         </p>
-        <UiIcon v-if="trailingIcon && type === ButtonTypes.standard" :icon="trailingIcon" size="24" />
+        <UiIcon v-if="trailingIcon && type === ButtonTypes.standard" :name="trailingIcon" size="24" />
       </template>
       <span
         v-if="caption && type === ButtonTypes.caption"
