@@ -32,5 +32,6 @@ jobs:
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          skip: 'dependabot/**'
           buildCommand: yarn build:storybook
           outputDir: storybook-static

@@ -1,10 +1,13 @@
 import address from '@src/assets/icons/address.svg?raw'
 import arrowRight from '@src/assets/icons/arrow-right.svg?raw'
 import cashback from '@src/assets/icons/cashback.svg?raw'
+import checkmark from '@src/assets/icons/checkmark.svg?raw'
 import chevronDown from '@src/assets/icons/chevron-down.svg?raw'
 import coins from '@src/assets/icons/coins.svg?raw'
 import copy from '@src/assets/icons/copy.svg?raw'
 import documentIcon from '@src/assets/icons/document.svg?raw'
+import exclamationCircle from '@src/assets/icons/exclamation-circle.svg?raw'
+import exclamationTriangle from '@src/assets/icons/exclamation-triangle.svg?raw'
 import filter from '@src/assets/icons/filter.svg?raw'
 import freespins from '@src/assets/icons/freespins.svg?raw'
 import fullscreen from '@src/assets/icons/fullscreen.svg?raw'
@@ -44,10 +47,13 @@ export const ICONS: Record<string, string> = {
   address,
   arrowRight,
   cashback,
+  checkmark,
   chevronDown,
   coins,
   copy,
   documentIcon,
+  exclamationCircle,
+  exclamationTriangle,
   filter,
   freespins,
   fullscreen,
