@@ -19,8 +19,7 @@ const meta = {
   component: UiButton,
   parameters: {
     backgrounds: {
-      // 👇 Set default background value for all component stories
-      default: 'Dark'
+      default: 'dark'
     }
   },
   tags: ['autodocs'],
