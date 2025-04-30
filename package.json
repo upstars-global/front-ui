@@ -88,5 +88,6 @@
   "peerDependencies": {
     "tailwindcss": "^3.4.x",
     "vue": "^3.5.x"
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }
