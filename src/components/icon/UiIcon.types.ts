@@ -1,4 +1,4 @@
-export type IconSize = '16' | '20' | '24' | '32' | '40' | '48'
+export type IconSize = '16' | '20' | '24' | '32' | '40' | '48' | 'full'
 
 export type IconSizes = {
   height: IconSize

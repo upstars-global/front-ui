@@ -9,7 +9,8 @@ const SIZE_CLASSES_LIST: Record<IconSize, string> = {
   '24': 'w-6 h-6',
   '32': 'w-8 h-8',
   '40': 'w-10 h-10',
-  '48': 'w-12 h-12'
+  '48': 'w-12 h-12',
+  full: 'w-full h-full'
 }
 
 const props = withDefaults(defineProps<IconProps>(), {
