@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UiIcon } from '@src/components'
+import UiIcon from '../icon/UiIcon.vue'
 import { computed } from 'vue'
 import {
   ButtonColors,
