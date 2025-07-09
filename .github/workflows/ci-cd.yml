@@ -10,7 +10,7 @@ jobs:
     name: Run build
     runs-on: ${{ matrix.os }}
     permissions:
-      contents: read
+      contents: write
     strategy:
       matrix:
         os: [ubuntu-latest]
