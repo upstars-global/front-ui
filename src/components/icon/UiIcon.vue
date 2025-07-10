@@ -13,6 +13,10 @@ const SIZE_CLASSES_LIST: Record<IconSize, string> = {
   full: 'w-full h-full'
 }
 
+defineOptions({
+  name: 'UiIcon'
+})
+
 const props = withDefaults(defineProps<IconProps>(), {
   size: '24'
 })

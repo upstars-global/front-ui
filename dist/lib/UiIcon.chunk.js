@@ -1,6 +1,7 @@
-import { defineComponent as u, computed as n, createElementBlock as r, openBlock as i, normalizeClass as m, mergeProps as h } from "vue";
+import { defineComponent as u, computed as n, createElementBlock as i, openBlock as r, normalizeClass as m, mergeProps as h } from "vue";
 import { icons as p } from "../components/icon/icons.js";
 const _ = ["innerHTML"], f = ["src"], z = /* @__PURE__ */ u({
+  name: "UiIcon",
   __name: "UiIcon",
   props: {
     name: {},
@@ -20,11 +21,11 @@ const _ = ["innerHTML"], f = ["src"], z = /* @__PURE__ */ u({
       if (e.name)
         return p[e.name];
     }), a = n(() => ({ height: e.size, width: e.size })), o = n(() => `ui-icon ${l[e.size]}`);
-    return (c, w) => s.value && !c.src ? (i(), r("div", {
+    return (c, w) => s.value && !c.src ? (r(), i("div", {
       key: 0,
       class: m(o.value),
       innerHTML: s.value
-    }, null, 10, _)) : (i(), r("img", h({ key: 1 }, a.value, {
+    }, null, 10, _)) : (r(), i("img", h({ key: 1 }, a.value, {
       class: o.value,
       src: c.src || void 0,
       alt: "icon"

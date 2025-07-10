@@ -3,7 +3,8 @@ import { dirname, resolve, relative, extname } from 'node:path'
 import { globSync } from 'glob'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
+// import { viteStaticCopy } from 'vite-plugin-static-copy'
+import dts from 'vite-plugin-dts'
 import pkg from './package.json'
 
 const dirName = typeof __dirname !== 'undefined' ? __dirname : dirname(fileURLToPath(import.meta.url))
@@ -48,5 +49,9 @@ export default defineConfig({
       }
     }
   },
-  plugins: [vue(), viteStaticCopy({ targets: [{ src: 'src/assets', dest: '' }] })]
+  plugins: [
+    vue(),
+    dts({ rollupTypes: true, tsconfigPath: './tsconfig.build.json' })
+    // viteStaticCopy({ targets: [{ src: 'src/assets', dest: '' }] })
+  ]
 })
