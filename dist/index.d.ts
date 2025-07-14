@@ -93,7 +93,7 @@ declare enum ButtonVariants {
     ghost = "ghost"
 }
 
-declare interface IconProps {
+export declare interface IconProps {
     name?: string;
     src?: string;
     size?: IconSize;
