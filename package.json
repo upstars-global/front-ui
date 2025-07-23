@@ -12,12 +12,12 @@
     "url": "https://github.com/upstars-global/front-ui/issues"
   },
   "homepage": "https://github.com/upstars-global/front-ui#readme",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.js"
     },
@@ -37,8 +37,7 @@
   "scripts": {
     "dev:storybook": "storybook dev -p 6006",
     "build:package": "vite build -c vite.lib.ts",
-    "build:types": "vue-tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
-    "build:lib": "yarn build:package && yarn build:types",
+    "build:lib": "yarn build:package",
     "build:storybook": "storybook build",
     "build:chromatic": "chromatic --build-command='yarn build:storybook' -o='storybook-static' --exit-zero-on-changes",
     "lint:eslint": "eslint .",
@@ -76,16 +75,19 @@
     "postcss-nested": "^7.0.2",
     "prettier": "^3.5.3",
     "storybook": "^8.6.12",
+    "tailwind-merge": "^2.6.0",
     "tsc-alias": "^1.8.16",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.32.1",
     "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-static-copy": "^3.0.0",
     "vitest": "^3.1.3",
     "vue-eslint-parser": "^10.1.3",
     "vue-tsc": "^2.2.10"
   },
   "peerDependencies": {
+    "tailwind-merge": "~2.6.0",
     "tailwindcss": "^3.4.x",
     "vue": "^3.5.x"
   },
