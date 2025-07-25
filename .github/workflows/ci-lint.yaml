@@ -23,10 +23,10 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Eslint
-        run: yarn lint:eslint
+        run: pnpm lint:eslint
       - name: Prettier
-        run: yarn lint:prettier
+        run: pnpm lint:prettier
       - name: Types check
-        run: yarn lint:tsc
+        run: pnpm lint:tsc
